@@ -1,0 +1,64 @@
+def add_time(start, duration, days_late = "Non"):
+    #Extracting info....
+
+    start_h = int(start.split(":")[0])
+    if "PM" in start:
+        start_h += 12
+    start_min = int(start.split(":")[1].split()[0])
+    dur_h = int(duration.split(":")[0])
+    dur_min = int(duration.split(":")[1])
+
+    days_later = int((start_h + dur_h + int((start_min + dur_min)/60))/24)
+
+    format_24 = (start_h + dur_h + int((start_min + dur_min)/60)) % 24
+    PM = False
+    if format_24 >= 12:
+        format_24 -= 12
+        if format_24 == 0:
+            format_24 = 12
+        PM = True
+    if format_24 == 0:
+        format_24 = 12
+
+    format_min = str(int((start_min + dur_min) % 60)).zfill(2)
+
+    if days_late == "Non": # Not requested day
+        if days_later > 1:
+            if PM:
+                new_t = f"{format_24}:{format_min} PM ({days_later} days later)"
+            else:
+                new_t = f"{format_24}:{format_min} AM ({days_later} days later)"
+
+        elif days_later == 1:
+            if PM:
+                new_t = f"{format_24}:{format_min} PM (next day)"
+            else:
+                new_t = f"{format_24}:{format_min} AM (next day)"
+        else:
+            if PM:
+                new_t = f"{format_24}:{format_min} PM"
+            else:
+                new_t = f"{format_24}:{format_min} AM"
+
+    else: # If requested
+        days = ("Monday" , "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+        day = days[(days.index(days_late.capitalize()) + days_later) % 7]
+        if days_later > 1:
+            if PM:
+                new_t = f"{format_24}:{format_min} PM, {day} ({days_later} days later)"
+            else:
+                new_t = f"{format_24}:{format_min} AM, {day} ({days_later} days later)"
+
+        elif days_later == 1:
+            if PM:
+                new_t = f"{format_24}:{format_min} PM, {day} (next day)"
+            else:
+                new_t = f"{format_24}:{format_min} AM, {day} (next day)"
+        else:
+            if PM:
+                new_t = f"{format_24}:{format_min} PM, {day}"
+            else:
+                new_t = f"{format_24}:{format_min} AM, {day}"
+    return new_t
+
+print(add_time("11:43 PM", "24:20", "tueSday"))
