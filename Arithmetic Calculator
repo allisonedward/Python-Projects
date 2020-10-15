@@ -1,0 +1,48 @@
+def arithmetic_arranger(problems, stp = False):
+    arranged_problems = []
+    top = ""
+    bottom = ""
+    lines = ""
+    ans_space = ""
+    if len(problems) > 5:
+        return "Error: Too many problems"
+    else:
+        for i, problem in enumerate(problems):   # Iterates through each problem in the set of problems
+            substrings = problem.split()
+            num_left = substrings[0]
+            operator = substrings[1]
+            num_right = substrings[2]
+            if operator not in ["+", "-"]:
+                return "Error: Operator must be '+' or '-'. "
+            else:
+                if not num_left.isnumeric() or not num_right.isnumeric():
+                    return "Error: Numbers must only contain digits."
+
+                if len(num_left) >4 or len(num_right) > 4:
+                    return "Error: Numbers cannot be more than four digits."
+                else:
+                    if operator == "+":
+                        sum_ans = int(num_left) + int(num_right)
+                    else:
+                        sum_ans = int(num_left) - int(num_right)
+
+                    sum_ans = int(num_left) - int(num_right)
+                    length = max(len(num_left), len(num_right)) + 2
+                    top += str(num_left.rjust(length))
+                    bottom += str(operator + num_right.rjust(length - 1))
+                    lines += str("-"* length)
+                    ans_space += str(sum_ans).rjust(length)
+
+                    if i < len(problems)-1:
+                        top += " "
+                        bottom += " "
+                        lines += " "
+                        ans_space += " "
+
+                    if stp == True:
+                        arranged_problems = (top + "\n" + bottom + "\n" + lines + "\n" + ans_space)
+                    else:
+                        arranged_problems = (top + "\n" + bottom + "\n" + lines + "\n")
+        return arranged_problems
+
+print(arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]))
