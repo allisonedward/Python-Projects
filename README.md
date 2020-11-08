@@ -1,5 +1,5 @@
 # Python-Projects
-Budget-App
+# Budget-App
 ### Assignment
 
 Complete the `Category` class in `budget.py`. It should be able to instantiate objects based on different budget categories like *food*, *clothing*, and *entertainment*. When objects are created, they are passed in the name of the category. The class should have an instance variable called `ledger` that is a list. The class should also contain the following methods:
@@ -57,7 +57,7 @@ Percentage spent by category
         g     
 ```
 
-Time-Calculator
+# Time-Calculator
 
 ### Assignment
 
@@ -94,7 +94,7 @@ add_time("6:30 PM", "205:12")
 ```
 
 
-Arithmetic Calculator
+# Arithmetic Calculator
 
 ### Assignment
 
@@ -158,7 +158,7 @@ The function will return the correct conversion if the supplied problems are pro
 
 
 
-PolyGon Area Calculator
+# PolyGon Area Calculator
 ### Assignment
 
 In this project you will use object oriented programming to create a Rectangle class and a Square class. The Square class should be a subclass of Rectangle and inherit methods and attributes.
